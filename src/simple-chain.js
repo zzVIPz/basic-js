@@ -1,23 +1,35 @@
+let chainMakerValue = [];
+
 const chainMaker = {
   getLength() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    return chainMakerValue.length;
   },
-  addLink(value) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+  addLink(value = '') {
+    chainMakerValue.push(`( ${value} )`);
+    return this;
   },
   removeLink(position) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    if (
+      position < 1 ||
+      position > chainMakerValue.length ||
+      typeof position === 'string' ||
+      parseInt(position) !== position
+    ) {
+      chainMakerValue = [];
+      throw new Error();
+    } else {
+      chainMakerValue.splice(position - 1, 1);
+    }
+    return this;
   },
   reverseChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    chainMakerValue.reverse();
+    return this;
   },
   finishChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    let result = chainMakerValue;
+    chainMakerValue = [];
+    return result.join('~~');
   }
 };
 
